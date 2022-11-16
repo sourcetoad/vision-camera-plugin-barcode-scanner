@@ -1,4 +1,4 @@
-name: RNSketchCanvas CI
+name: CI
 on: [push]
 
 jobs:
