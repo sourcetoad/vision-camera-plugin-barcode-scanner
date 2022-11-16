@@ -1,14 +1,6 @@
 #import <React/RCTBridgeModule.h>
+#import <VisionCamera/FrameProcessorPlugin.h>
 
-@interface RCT_EXTERN_MODULE(VisionCameraPluginBarcodeScanner, NSObject)
-
-RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
-
-+ (BOOL)requiresMainQueueSetup
-{
-  return NO;
-}
+@interface VISION_EXPORT_SWIFT_FRAME_PROCESSOR(scanQRCodes, VisionCameraPluginBarcodeScanner)
 
 @end

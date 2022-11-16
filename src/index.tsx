@@ -1,22 +1,21 @@
-import { NativeModules, Platform } from 'react-native';
+import { useBarcodeScanner } from './scanner';
+import type { Frame } from 'react-native-vision-camera';
 
-const LINKING_ERROR =
-  `The package 'vision-camera-plugin-barcode-scanner' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-const VisionCameraPluginBarcodeScanner = NativeModules.VisionCameraPluginBarcodeScanner
-  ? NativeModules.VisionCameraPluginBarcodeScanner
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
-
-export function multiply(a: number, b: number): Promise<number> {
-  return VisionCameraPluginBarcodeScanner.multiply(a, b);
+export enum BarcodeScannerFormats {
+  All = 1,
+  QR_CODE = 2,
+  PDF_417 = 3,
 }
+
+type CornerPoint = {
+  x: number;
+  y: number;
+};
+
+export type FrameProcessor = (frame: Frame) => void;
+export type BarcodeData = {
+  rawValue: string;
+  displayValue: string;
+  cornerPoints: CornerPoint[];
+};
+export { useBarcodeScanner };

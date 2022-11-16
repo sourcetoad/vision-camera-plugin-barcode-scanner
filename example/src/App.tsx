@@ -1,20 +1,75 @@
-import * as React from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'vision-camera-plugin-barcode-scanner';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text, Button } from 'react-native';
+import { Camera, useCameraDevices } from 'react-native-vision-camera';
+import {
+  useBarcodeScanner,
+  BarcodeScannerFormats,
+} from 'vision-camera-plugin-barcode-scanner';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+  // state
+  const [permsGranted, setPermsGranted] = useState(false);
+  const [displayCamera, setDisplayCamera] = useState(false);
+  const [barcodeData, frameProcessor] = useBarcodeScanner(
+    BarcodeScannerFormats.All
   );
+
+  // hooks
+  const devices = useCameraDevices();
+  const device = devices.back;
+
+  useEffect(() => {
+    (async () => {
+      const cameraPermission = await Camera.getCameraPermissionStatus();
+
+      switch (cameraPermission) {
+        case 'authorized':
+          setPermsGranted(true);
+
+          break;
+        case 'not-determined':
+          const newCameraPermission = await Camera.requestCameraPermission();
+          if (newCameraPermission !== 'authorized') {
+            // link to open settings
+          } else {
+            setPermsGranted(true);
+          }
+          break;
+        default:
+          setPermsGranted(false);
+
+        // // link to open settings on popup
+      }
+    })();
+  });
+
+  useEffect(() => {
+    if (barcodeData !== undefined) {
+      setDisplayCamera(false);
+    }
+  }, [barcodeData]);
+
+  if (device == null) {
+    return <></>;
+  } else if (!permsGranted) {
+    return <></>;
+  } else if (!displayCamera) {
+    return (
+      <View style={styles.container}>
+        <Button title="Open Camera" onPress={() => setDisplayCamera(true)} />
+        <Text style={styles.resultsText}>Result: {barcodeData?.rawValue}</Text>
+      </View>
+    );
+  } else {
+    return (
+      <Camera
+        device={device}
+        isActive={true}
+        style={StyleSheet.absoluteFill}
+        frameProcessor={frameProcessor}
+      />
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -22,6 +77,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  resultsText: {
+    fontSize: 18,
+    marginTop: 30,
   },
   box: {
     width: 60,
