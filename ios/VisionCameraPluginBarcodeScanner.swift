@@ -7,8 +7,6 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
   private static func getScannerOptions(scannerFormat: Int?) -> BarcodeScannerOptions {
     var barcodeOptions: BarcodeScannerOptions
     switch scannerFormat {
-        case 1:
-            barcodeOptions = BarcodeScannerOptions(formats: .all)
         case 2:
             barcodeOptions = BarcodeScannerOptions(formats: .qrCode)
         case 3:
