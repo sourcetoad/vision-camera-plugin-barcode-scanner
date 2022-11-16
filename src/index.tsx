@@ -1,5 +1,5 @@
-import {useBarcodeScanner} from './scanner'
-import type {Frame} from 'react-native-vision-camera'
+import { useBarcodeScanner } from './scanner';
+import type { Frame } from 'react-native-vision-camera';
 
 export enum BarcodeScannerFormats {
   All = 1,
@@ -8,14 +8,14 @@ export enum BarcodeScannerFormats {
 }
 
 type CornerPoint = {
-  x: number
-  y: number
-}
+  x: number;
+  y: number;
+};
 
-export type FrameProcessor = (frame: Frame) => void
+export type FrameProcessor = (frame: Frame) => void;
 export type BarcodeData = {
-  rawValue: string
-  displayValue: string
-  cornerPoints: CornerPoint[]
-}
-export {useBarcodeScanner}
+  rawValue: string;
+  displayValue: string;
+  cornerPoints: CornerPoint[];
+};
+export { useBarcodeScanner };

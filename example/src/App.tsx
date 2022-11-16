@@ -1,63 +1,65 @@
-
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
-import {useBarcodeScanner, BarcodeScannerFormats} from 'vision-camera-plugin-barcode-scanner'
-
+import {
+  useBarcodeScanner,
+  BarcodeScannerFormats,
+} from 'vision-camera-plugin-barcode-scanner';
 
 export default function App() {
   // state
-  const [permsGranted, setPermsGranted] = useState(false)
-  const [displayCamera, setDisplayCamera] = useState(false)
-  const [barcodeData, frameProcessor] = useBarcodeScanner(BarcodeScannerFormats.All)
+  const [permsGranted, setPermsGranted] = useState(false);
+  const [displayCamera, setDisplayCamera] = useState(false);
+  const [barcodeData, frameProcessor] = useBarcodeScanner(
+    BarcodeScannerFormats.All
+  );
 
-  // hooks 
-  const devices = useCameraDevices()
-  const device = devices.back
+  // hooks
+  const devices = useCameraDevices();
+  const device = devices.back;
 
   useEffect(() => {
     (async () => {
-      const cameraPermission = await Camera.getCameraPermissionStatus()
+      const cameraPermission = await Camera.getCameraPermissionStatus();
 
       switch (cameraPermission) {
         case 'authorized':
-          setPermsGranted(true)
-          
-          break
+          setPermsGranted(true);
+
+          break;
         case 'not-determined':
-          const newCameraPermission = await Camera.requestCameraPermission()
+          const newCameraPermission = await Camera.requestCameraPermission();
           if (newCameraPermission !== 'authorized') {
             // link to open settings
           } else {
-            setPermsGranted(true)
+            setPermsGranted(true);
           }
-          break
+          break;
         default:
-          setPermsGranted(false)
-          
-          // // link to open settings on popup 
+          setPermsGranted(false);
+
+        // // link to open settings on popup
       }
-    })()
-  })
+    })();
+  });
 
   useEffect(() => {
     if (barcodeData !== undefined) {
-      setDisplayCamera(false)
+      setDisplayCamera(false);
     }
-  }, [barcodeData])
+  }, [barcodeData]);
 
   if (device == null) {
-    return (<></>)
-
+    return <></>;
   } else if (!permsGranted) {
-    return (<></>)
+    return <></>;
   } else if (!displayCamera) {
     return (
       <View style={styles.container}>
-        <Button title='Open Camera' onPress={() => setDisplayCamera(true)}></Button>
+        <Button title="Open Camera" onPress={() => setDisplayCamera(true)} />
         <Text style={styles.resultsText}>Result: {barcodeData?.rawValue}</Text>
       </View>
-    )
+    );
   } else {
     return (
       <Camera
@@ -66,7 +68,7 @@ export default function App() {
         style={StyleSheet.absoluteFill}
         frameProcessor={frameProcessor}
       />
-    )
+    );
   }
 }
 
@@ -75,11 +77,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "white"
+    backgroundColor: 'white',
   },
   resultsText: {
-    fontSize: 18, 
-    marginTop: 30 
+    fontSize: 18,
+    marginTop: 30,
   },
   box: {
     width: 60,
