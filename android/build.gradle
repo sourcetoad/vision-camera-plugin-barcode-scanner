@@ -8,9 +8,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.5.3'
-    // noinspection DifferentKotlinGradleVersion
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath 'com.android.tools.build:gradle:4.2.1'
   }
 }
 
@@ -19,7 +17,6 @@ def isNewArchitectureEnabled() {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 if (isNewArchitectureEnabled()) {
   apply plugin: 'com.facebook.react'
@@ -133,7 +130,11 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  api project(":react-native-vision-camera")
+  implementation "androidx.camera:camera-core:1.1.0-alpha06"
+  implementation 'com.google.mlkit:barcode-scanning:17.0.2'
+  implementation 'com.google.code.gson:gson:2.10'
+
 // From node_modules
 }
 
