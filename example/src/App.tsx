@@ -19,9 +19,9 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const cameraPermission = await Camera.getCameraPermissionStatus();
+      const cameraStatusPermission = await Camera.getCameraPermissionStatus();
 
-      if (cameraPermission === 'authorized') {
+      if (cameraStatusPermission === 'authorized') {
         setPermsGranted(true);
       } else {
         const cameraPermission = await Camera.requestCameraPermission();
