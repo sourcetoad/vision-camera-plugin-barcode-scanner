@@ -2,7 +2,6 @@ package com.visioncamerapluginbarcodescanner;
 
 import android.media.Image;
 
-
 import androidx.camera.core.ImageProxy;
 
 import com.facebook.react.bridge.WritableNativeMap;
@@ -31,8 +30,7 @@ public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
       default:
         barcodeFormat = Barcode.FORMAT_ALL_FORMATS;
     }
-    BarcodeScannerOptions options =
-        new BarcodeScannerOptions.Builder()
+    BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
         .setBarcodeFormats(barcodeFormat).build();
 
     return options;
@@ -43,11 +41,11 @@ public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
       Task<List<Barcode>> scan = scanner.process(image);
       List<Barcode> results = Tasks.await(scan);
       if (results.size() < 1) {
-         return null;
-       }
+        return null;
+      }
       // we only want to return the first instance
       // since we don't care about scanning multiple barcodes at the same time
-       return results.get(0);
+      return results.get(0);
     } catch (Exception e) {
       return null;
     }
@@ -55,7 +53,7 @@ public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
 
   private WritableNativeArray mapCornerPoints(Point[] cornerPoints) {
     WritableNativeArray pointArray = new WritableNativeArray();
-    for (Point point: cornerPoints) {
+    for (Point point : cornerPoints) {
       WritableNativeMap pointMap = new WritableNativeMap();
       pointMap.putInt("x", point.x);
       pointMap.putInt("y", point.y);
@@ -92,8 +90,6 @@ public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
       return null;
     }
   }
-
-
 
   public VisionCameraPluginBarcodeScanner() {
     super("scanQRCodes");
