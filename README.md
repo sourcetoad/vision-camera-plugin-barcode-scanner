@@ -7,12 +7,12 @@ make sure to install both the `vision-camera-plugin-barcode-scanner` and `react-
 
 **npm**
 ```sh
-npm install vision-camera-plugin-barcode-scanner react-native-reanimated
+npm install @sourcetoad/vision-camera-plugin-barcode-scanner react-native-reanimated
 ```
 
 **yarn**
 ```sh
-yarn add vision-camera-plugin-barcode-scanner react-native-reanimated
+yarn add @sourcetoad/vision-camera-plugin-barcode-scanner react-native-reanimated
 ```
 ## Setup**
 
