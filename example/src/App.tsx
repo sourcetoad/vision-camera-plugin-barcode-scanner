@@ -13,35 +13,26 @@ export default function App() {
   const [barcodeData, frameProcessor] = useBarcodeScanner(
     BarcodeScannerFormats.All
   );
-
   // hooks
   const devices = useCameraDevices();
   const device = devices.back;
 
   useEffect(() => {
     (async () => {
-      const cameraPermission = await Camera.getCameraPermissionStatus();
+      const cameraStatusPermission = await Camera.getCameraPermissionStatus();
 
-      switch (cameraPermission) {
-        case 'authorized':
+      if (cameraStatusPermission === 'authorized') {
+        setPermsGranted(true);
+      } else {
+        const cameraPermission = await Camera.requestCameraPermission();
+        if (cameraPermission !== 'authorized') {
+          // link to open settings
+        } else {
           setPermsGranted(true);
-
-          break;
-        case 'not-determined':
-          const newCameraPermission = await Camera.requestCameraPermission();
-          if (newCameraPermission !== 'authorized') {
-            // link to open settings
-          } else {
-            setPermsGranted(true);
-          }
-          break;
-        default:
-          setPermsGranted(false);
-
-        // // link to open settings on popup
+        }
       }
     })();
-  });
+  }, [permsGranted]);
 
   useEffect(() => {
     if (barcodeData !== undefined) {
