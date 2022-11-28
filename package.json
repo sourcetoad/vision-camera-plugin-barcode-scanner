@@ -1,5 +1,5 @@
 {
-  "name": "vision-camera-plugin-barcode-scanner",
+  "name": "@sourcetoad/vision-camera-plugin-barcode-scanner",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -101,10 +101,10 @@
       "tagName": "v${version}"
     },
     "npm": {
-      "publish": true
+      "publish": false
     },
     "github": {
-      "release": true
+      "release": false
     },
     "plugins": {
       "@release-it/conventional-changelog": {
