@@ -1,6 +1,5 @@
 # vision-camera-plugin-barcode-scanner
-
-Vision Camera Plugin Scanner
+_A [VisionCamera](https://mrousavy.com/react-native-vision-camera/) plugin that utilizes [Google ML Kit](https://developers.google.com/ml-kit) for parsing._
 
 ## Installation
 
@@ -23,8 +22,8 @@ plugins: [
 
 ## Usage
 
-call the `useBarcodeScanner()` hook and pass the `BarcodeScannerFormat` type as a parameter. If no parameter is passed. the camera will scan for all barcodes 
-> Note: Specifying the type of barcode you wish to scan allows for faster detection 
+call the `useBarcodeScanner()` hook and pass the `BarcodeScannerFormat` type as a parameter. If no parameter is passed. the camera will scan for all barcodes
+> Note: Specifying the type of barcode you wish to scan allows for faster detection
 
 > Ex. `const [barcodeData, frameProcessor] = useBarcodeScanner(BarcodeScannerFormats.QR_CODE)` only checks for QR barcodes, resulting in faster detection
 
@@ -32,18 +31,18 @@ call the `useBarcodeScanner()` hook and pass the `BarcodeScannerFormat` type as 
 ```ts
 export enum BarcodeScannerFormats {
   All = 1, // -> scans for all barcodes
-  QR_CODE = 2, 
+  QR_CODE = 2,
   PDF_417 = 3,
 }
 ```
 
 the `useBarcodeScanner()` hooks returns an state array with the `barcodeData` and the `frameProcesssor` which you pass to the  `<Camera/>` component.
 
-Ex. 
+Ex.
 ```js
   import {useBarcodeScanner, BarcodeScannerFormats} from 'vision-camera-plugin-barcode-scanner'
 
-  
+
   const [barcodeData, frameProcessor] = useBarcodeScanner(BarcodeScannerFormats.All)
 
   useEffect(() => {
@@ -80,7 +79,7 @@ export default function App() {
   const device = devices.back
 
   useEffect(() => {
-    /** 
+    /**
      * add code set camera permissions
      * https://mrousavy.com/react-native-vision-camera/docs/guides#getting-permissions
     */
