@@ -3,7 +3,7 @@ _A [VisionCamera](https://mrousavy.com/react-native-vision-camera/) plugin that 
 
 ## Installation
 
-make sure to install both the `vision-camera-plugin-barcode-scanner` and `react-native-reanimated` plugins
+make sure to install both the `@sourcetoad/vision-camera-plugin-barcode-scanner` and `react-native-reanimated` plugins
 
 **npm**
 ```sh
@@ -14,7 +14,7 @@ npm install @sourcetoad/vision-camera-plugin-barcode-scanner react-native-reanim
 ```sh
 yarn add @sourcetoad/vision-camera-plugin-barcode-scanner react-native-reanimated
 ```
-## Setup**
+## Setup
 
 Edit your `babel.config.js` file to include the following
 ```js
