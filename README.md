@@ -6,6 +6,10 @@ _A [VisionCamera](https://mrousavy.com/react-native-vision-camera/) plugin that 
 ```sh
 npm install vision-camera-plugin-barcode-scanner
 ```
+make sure to also install the `react-native-reanimated` package
+```sh
+npm install react-native-reanimated
+```
 ## Setup**
 
 Edit your `babel.config.js` file to include the following
@@ -51,6 +55,7 @@ Ex.
     }
   }, [barcodeData])
 
+  if (device == null) return <LoadingView />
   return (
     <Camera
       device={device}
