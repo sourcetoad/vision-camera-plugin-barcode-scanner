@@ -1,10 +1,8 @@
 name: Publish
 on:
   push:
-    branches-ignore:
-      - '**'
-    tags:
-      - v*
+    branches:
+      - production
 
 jobs:
   publish:
