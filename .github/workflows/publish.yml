@@ -32,7 +32,7 @@ jobs:
 
       - name: Get Version
         id: vars
-        run: echo "name=version::$(jq -r ".version" package.json)" >> $GITHUB_OUTPUT
+        run: echo "name=version::v$(jq -r ".version" package.json)" >> $GITHUB_OUTPUT
 
       - name: Release
         uses: softprops/action-gh-release@v1
