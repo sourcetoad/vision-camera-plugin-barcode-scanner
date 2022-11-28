@@ -3,8 +3,16 @@ _A [VisionCamera](https://mrousavy.com/react-native-vision-camera/) plugin that 
 
 ## Installation
 
+make sure to install both the `vision-camera-plugin-barcode-scanner` and `react-native-reanimated` plugins
+
+**npm**
 ```sh
-npm install vision-camera-plugin-barcode-scanner
+npm install vision-camera-plugin-barcode-scanner react-native-reanimated
+```
+
+**yarn**
+```sh
+yarn add vision-camera-plugin-barcode-scanner react-native-reanimated
 ```
 ## Setup**
 
@@ -51,6 +59,7 @@ Ex.
     }
   }, [barcodeData])
 
+  if (device == null) return <LoadingView />
   return (
     <Camera
       device={device}
