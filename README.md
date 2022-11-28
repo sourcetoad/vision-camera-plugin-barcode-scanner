@@ -3,12 +3,16 @@ _A [VisionCamera](https://mrousavy.com/react-native-vision-camera/) plugin that 
 
 ## Installation
 
+make sure to install both the `vision-camera-plugin-barcode-scanner` and `react-native-reanimated` plugins
+
+**npm**
 ```sh
-npm install vision-camera-plugin-barcode-scanner
+npm install vision-camera-plugin-barcode-scanner react-native-reanimated
 ```
-make sure to also install the `react-native-reanimated` package
+
+**yarn**
 ```sh
-npm install react-native-reanimated
+yarn add vision-camera-plugin-barcode-scanner react-native-reanimated
 ```
 ## Setup**
 
