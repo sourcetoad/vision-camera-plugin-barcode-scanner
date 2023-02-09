@@ -1,4 +1,5 @@
 package com.visioncamerapluginbarcodescanner;
+
 import androidx.annotation.NonNull;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -14,7 +15,9 @@ public class VisionCameraPluginBarcodeScannerPackage implements ReactPackage {
   @NonNull
   @Override
   public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
-    FrameProcessorPlugin.register(new VisionCameraPluginBarcodeScanner());
+    VisionCameraPluginBarcodeScanner VisionCamera = new VisionCameraPluginBarcodeScanner();
+    VisionCamera.setContext(reactContext);
+    FrameProcessorPlugin.register(VisionCamera);
     return Collections.emptyList();
   }
 
@@ -24,5 +27,3 @@ public class VisionCameraPluginBarcodeScannerPackage implements ReactPackage {
     return Collections.emptyList();
   }
 }
-
-

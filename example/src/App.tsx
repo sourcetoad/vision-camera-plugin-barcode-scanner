@@ -4,7 +4,7 @@ import { Camera, useCameraDevices } from 'react-native-vision-camera';
 import {
   useBarcodeScanner,
   BarcodeScannerFormats,
-} from 'vision-camera-plugin-barcode-scanner';
+} from '../../src/index';
 
 export default function App() {
   // state
@@ -14,7 +14,8 @@ export default function App() {
     BarcodeScannerFormats.All
   );
   // hooks
-  const devices = useCameraDevices();
+  const devices = useCameraDevices('dual-camera'); // dual-camera captures the best
+
   const device = devices.back;
 
   useEffect(() => {
@@ -56,6 +57,10 @@ export default function App() {
       <Camera
         device={device}
         isActive={true}
+        preset='high' // 'high' preset captures the best
+        // photo captures at '1504x1128'
+        // high captures at '1920x1080'
+        // hd-3840x2160 captures at '3840x2160'
         style={StyleSheet.absoluteFill}
         frameProcessor={frameProcessor}
       />
