@@ -11,10 +11,12 @@ export default function App() {
   const [permsGranted, setPermsGranted] = useState(false);
   const [displayCamera, setDisplayCamera] = useState(false);
   const [barcodeData, frameProcessor] = useBarcodeScanner(
-    BarcodeScannerFormats.All
+    BarcodeScannerFormats.PDF_417
   );
   // hooks
-  const devices = useCameraDevices('dual-camera'); // dual-camera captures the best
+  const devices = useCameraDevices('wide-angle-camera'); // dual-camera captures the best but dual camera is only supported on ios
+
+  console.log(devices)
 
   const device = devices.back;
 
@@ -53,11 +55,12 @@ export default function App() {
       </View>
     );
   } else {
+    console.log("CAMERA")
     return (
       <Camera
         device={device}
         isActive={true}
-        preset='high' // 'high' preset captures the best
+        preset='hd-3840x2160' // 'high' preset captures the best
         // photo captures at '1504x1128'
         // high captures at '1920x1080'
         // hd-3840x2160 captures at '3840x2160'

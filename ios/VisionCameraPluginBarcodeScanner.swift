@@ -18,7 +18,7 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
     return barcodeOptions
   }
     
-  private static func getScannerResults(image: VisionImage, barcodeScanner: BarcodeScanner) -> Barcode? {
+    private static func getScannerResults(image: VisionImage, barcodeScanner: BarcodeScanner) -> Barcode? {
     do {
         let barcodes = try barcodeScanner.results(in: image)
         if (barcodes.count < 1) {
@@ -58,14 +58,13 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
     private static func scaleImage(sampleBuffer: CMSampleBuffer) -> CMSampleBuffer? {
         let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
         let image = CIImage(cvPixelBuffer: imageBuffer)
-        let filter = CIFilter(name: "CILanczosScaleTransform")!
+        
+        let scaleFilter = CIFilter(name: "CILanczosScaleTransform")
+        scaleFilter?.setValue(image, forKey: kCIInputImageKey)
+        scaleFilter?.setValue([1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7].randomElement(), forKey: kCIInputScaleKey)
+        scaleFilter?.setValue(1.0, forKey: kCIInputAspectRatioKey)
+        guard let scaledImage = scaleFilter?.outputImage else { return nil }
 
-        filter.setValue(image, forKey: kCIInputImageKey)
-        filter.setValue(1.1, forKey: kCIInputScaleKey)
-        filter.setValue(1.0, forKey: kCIInputAspectRatioKey)
-        guard let scaledImage = filter.outputImage else {
-            return nil
-        }
         let context = CIContext()
         context.render(scaledImage, to: imageBuffer)
         let sampleBuffer: CMSampleBuffer? = createSampleBufferFrom(pixelBuffer: imageBuffer)
@@ -74,9 +73,9 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
 
     private static func createSampleBufferFrom(pixelBuffer: CVPixelBuffer) -> CMSampleBuffer? {
         var sampleBuffer: CMSampleBuffer?
-        
         var timimgInfo  = CMSampleTimingInfo()
         var formatDescription: CMFormatDescription? = nil
+        
         CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescriptionOut: &formatDescription)
         
         let osStatus = CMSampleBufferCreateReadyWithImageBuffer(
@@ -87,86 +86,28 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
           sampleBufferOut: &sampleBuffer
         )
         
-        // Print out errors
-        if osStatus == kCMSampleBufferError_AllocationFailed {
-          print("osStatus == kCMSampleBufferError_AllocationFailed")
-        }
-        if osStatus == kCMSampleBufferError_RequiredParameterMissing {
-          print("osStatus == kCMSampleBufferError_RequiredParameterMissing")
-        }
-        if osStatus == kCMSampleBufferError_AlreadyHasDataBuffer {
-          print("osStatus == kCMSampleBufferError_AlreadyHasDataBuffer")
-        }
-        if osStatus == kCMSampleBufferError_BufferNotReady {
-          print("osStatus == kCMSampleBufferError_BufferNotReady")
-        }
-        if osStatus == kCMSampleBufferError_SampleIndexOutOfRange {
-          print("osStatus == kCMSampleBufferError_SampleIndexOutOfRange")
-        }
-        if osStatus == kCMSampleBufferError_BufferHasNoSampleSizes {
-          print("osStatus == kCMSampleBufferError_BufferHasNoSampleSizes")
-        }
-        if osStatus == kCMSampleBufferError_BufferHasNoSampleTimingInfo {
-          print("osStatus == kCMSampleBufferError_BufferHasNoSampleTimingInfo")
-        }
-        if osStatus == kCMSampleBufferError_ArrayTooSmall {
-          print("osStatus == kCMSampleBufferError_ArrayTooSmall")
-        }
-        if osStatus == kCMSampleBufferError_InvalidEntryCount {
-          print("osStatus == kCMSampleBufferError_InvalidEntryCount")
-        }
-        if osStatus == kCMSampleBufferError_CannotSubdivide {
-          print("osStatus == kCMSampleBufferError_CannotSubdivide")
-        }
-        if osStatus == kCMSampleBufferError_SampleTimingInfoInvalid {
-          print("osStatus == kCMSampleBufferError_SampleTimingInfoInvalid")
-        }
-        if osStatus == kCMSampleBufferError_InvalidMediaTypeForOperation {
-          print("osStatus == kCMSampleBufferError_InvalidMediaTypeForOperation")
-        }
-        if osStatus == kCMSampleBufferError_InvalidSampleData {
-          print("osStatus == kCMSampleBufferError_InvalidSampleData")
-        }
-        if osStatus == kCMSampleBufferError_InvalidMediaFormat {
-          print("osStatus == kCMSampleBufferError_InvalidMediaFormat")
-        }
-        if osStatus == kCMSampleBufferError_Invalidated {
-          print("osStatus == kCMSampleBufferError_Invalidated")
-        }
-        if osStatus == kCMSampleBufferError_DataFailed {
-          print("osStatus == kCMSampleBufferError_DataFailed")
-        }
-        if osStatus == kCMSampleBufferError_DataCanceled {
-          print("osStatus == kCMSampleBufferError_DataCanceled")
-        }
-        
         guard let buffer = sampleBuffer else {
           print("Cannot create sample buffer")
           return nil
         }
-        
         return buffer
-      }
+    }
      
-    
-
-  @objc
-  public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
-    guard let scaledImage = scaleImage(sampleBuffer: frame.buffer) else {
-        return nil
-    }
+    @objc
+    public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
+        guard let scaledImage = scaleImage(sampleBuffer: frame.buffer) else {
+            return nil
+        }
       
-    let image = VisionImage(buffer: scaledImage)
-    let bufferSize = getImageSize(sampleBuffer: scaledImage)
-    image.orientation = frame.orientation
-    let format = args[0] as? Int
-    let barcodeOptions = getScannerOptions(scannerFormat: format)
-      
-    guard let barcodeResults = getScannerResults(image: image, barcodeScanner: BarcodeScanner.barcodeScanner(options: barcodeOptions)) else {
-          return nil
-    }
+        let image = VisionImage(buffer: scaledImage)
+        let bufferSize = getImageSize(sampleBuffer: scaledImage)
+        image.orientation = frame.orientation
+        let format = args[0] as? Int
+        let barcodeOptions = getScannerOptions(scannerFormat: format)
+        
+        guard let barcodeResults = getScannerResults(image: VisionImage(buffer: frame.buffer), barcodeScanner: BarcodeScanner.barcodeScanner(options: barcodeOptions)) else { return nil }
 
-    let barcodeData = mapBarcodeData(barcodeResults: barcodeResults)
-    return barcodeData
-  }
+        let barcodeData = mapBarcodeData(barcodeResults: barcodeResults)
+        return barcodeData
+    }
 }
