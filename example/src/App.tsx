@@ -54,7 +54,6 @@ export default function App() {
       <Camera
         device={device}
         isActive={true}
-        preset="high"
         torch="on"
         style={StyleSheet.absoluteFill}
         frameProcessor={frameProcessor}
