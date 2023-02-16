@@ -86,10 +86,7 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
           sampleBufferOut: &sampleBuffer
         )
         
-        guard let buffer = sampleBuffer else {
-          print("Cannot create sample buffer")
-          return nil
-        }
+        guard let buffer = sampleBuffer else { return nil }
         return buffer
     }
      

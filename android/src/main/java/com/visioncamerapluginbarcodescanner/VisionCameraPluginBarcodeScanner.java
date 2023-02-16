@@ -2,14 +2,7 @@ package com.visioncamerapluginbarcodescanner;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
-import android.graphics.Rect;
-import android.media.Image;
-
 import androidx.camera.core.ImageProxy;
-
-import com.facebook.imageutils.BitmapUtil;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.google.android.gms.tasks.Task;
@@ -20,18 +13,8 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.List;
 import android.graphics.Point;
-import android.os.Environment;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicYuvToRGB;
 
 public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
   private Context context;
@@ -101,10 +84,8 @@ public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
       BarcodeScannerOptions scannerOptions = getScannerOptions(scannerFormat.intValue());
       BarcodeScanner scannerClient = BarcodeScanning.getClient(scannerOptions);
       VisionCameraBitmapUtils bitmapImage = new VisionCameraBitmapUtils(imageProxy.getImage(), this.context);
-      Bitmap scaledBitmap = bitmapImage.setBitmapScale(1000, 2000);
-
       if (bitmapImage != null) {
-        InputImage image = InputImage.fromBitmap(scaledBitmap, imageProxy.getImageInfo().getRotationDegrees());
+        InputImage image = InputImage.fromBitmap(bitmapImage.getBitmap(), imageProxy.getImageInfo().getRotationDegrees());
         Barcode barcodeResults = getScannerResults(image, scannerClient);
         if (barcodeResults != null) {
           return mapBarcodeData(barcodeResults);

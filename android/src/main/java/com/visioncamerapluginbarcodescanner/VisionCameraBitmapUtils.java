@@ -5,14 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.ImageFormat;
 import android.graphics.Rect;
 import android.media.Image;
-import android.os.Environment;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 
 public class VisionCameraBitmapUtils {
@@ -37,21 +34,6 @@ public class VisionCameraBitmapUtils {
     return this.bitmap;
   }
 
-  /**
-   * saves the bitmap to the android file system
-   * this is used for viewing what the final image looks like
-   * before it is sent for processing.
-   * only use for debugging
-   */
-  public static void saveToFS(Bitmap bitmap) {
-    try {
-      File mediaStorageDir = new File(Environment.getExternalStorageDirectory()
-        + File.separator + "Downloads/" +  "testimage.jpg");
-      System.out.println(mediaStorageDir);
-      FileOutputStream out = new FileOutputStream(mediaStorageDir);
-      bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-    } catch (Exception e ) {}
-  }
 
   private Bitmap convertImageToBitmap(Image image, Context context) {
     if (image == null) {

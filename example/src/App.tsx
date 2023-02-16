@@ -14,9 +14,8 @@ export default function App() {
     BarcodeScannerFormats.PDF_417
   );
   // hooks
-  const devices = useCameraDevices('wide-angle-camera'); // dual-camera captures the best but dual camera is only supported on ios
+  const devices = useCameraDevices('wide-angle-camera');
 
-  console.log(devices)
 
   const device = devices.back;
 
@@ -55,15 +54,12 @@ export default function App() {
       </View>
     );
   } else {
-    console.log("CAMERA")
     return (
       <Camera
         device={device}
         isActive={true}
-        preset='hd-3840x2160' // 'high' preset captures the best
-        // photo captures at '1504x1128'
-        // high captures at '1920x1080'
-        // hd-3840x2160 captures at '3840x2160'
+        preset='high'
+        torch='on'
         style={StyleSheet.absoluteFill}
         frameProcessor={frameProcessor}
       />
