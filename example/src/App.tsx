@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
-import {
-  useBarcodeScanner,
-  BarcodeScannerFormats,
-} from '../../src/index';
+import { useBarcodeScanner, BarcodeScannerFormats } from '../../src/index';
 
 export default function App() {
   // state
@@ -15,7 +12,6 @@ export default function App() {
   );
   // hooks
   const devices = useCameraDevices('wide-angle-camera');
-
 
   const device = devices.back;
 
@@ -58,8 +54,8 @@ export default function App() {
       <Camera
         device={device}
         isActive={true}
-        preset='high'
-        torch='on'
+        preset="high"
+        torch="on"
         style={StyleSheet.absoluteFill}
         frameProcessor={frameProcessor}
       />
