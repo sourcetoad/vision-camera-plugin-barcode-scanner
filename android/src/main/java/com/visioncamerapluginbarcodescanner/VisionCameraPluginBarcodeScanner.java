@@ -82,8 +82,10 @@ public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
       if (mediaImage != null) {
         InputImage image = InputImage.fromMediaImage(mediaImage, imageProxy.getImageInfo().getRotationDegrees());
         Barcode barcodeResults = getScannerResults(image, scannerClient);
-        WritableNativeMap barcodeData = mapBarcodeData(barcodeResults);
-        return barcodeData;
+        if (barcodeResults != null) {
+          return mapBarcodeData(barcodeResults);
+        }
+        return null;
       }
       return null;
     } catch (Exception e) {
