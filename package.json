@@ -1,6 +1,6 @@
 {
   "name": "@sourcetoad/vision-camera-plugin-barcode-scanner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -48,9 +48,6 @@
     "url": "https://github.com/sourcetoad/vision-camera-plugin-barcode-scanner/issues"
   },
   "homepage": "https://github.com/sourcetoad/vision-camera-plugin-barcode-scanner#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@react-native-community/eslint-config": "^3.0.2",
