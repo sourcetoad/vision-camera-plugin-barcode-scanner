@@ -61,15 +61,16 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^28.1.1",
+    "metro-react-native-babel-preset": "0.72.4",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
-    "react": "18.1.0",
-    "react-native": "0.70.5",
+    "react": "18.2.0",
+    "react-native": "0.72.5",
     "react-native-builder-bob": "^0.20.1",
     "release-it": "^15.0.0",
-    "typescript": "^4.5.2",
-    "react-native-reanimated": "^2.12.0",
-    "react-native-vision-camera": "^2.15.2"
+    "typescript": "^4.8.4",
+    "react-native-reanimated": "^3.5.4",
+    "react-native-vision-camera": "^2.16.1"
   },
   "resolutions": {
     "@types/react": "17.0.21"
@@ -77,8 +78,8 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-reanimated": ">=2.12.0",
-    "react-native-vision-camera": ">=2.15.2"
+    "react-native-reanimated": ">=3.5.4",
+    "react-native-vision-camera": ">=2.16.1"
   },
   "jest": {
     "preset": "react-native",
@@ -154,7 +155,7 @@
     ]
   },
   "dependencies": {
-    "react-native-reanimated": "^2.12.0",
-    "react-native-vision-camera": "^2.15.2"
+    "react-native-reanimated": "^3.5.4",
+    "react-native-vision-camera": "^2.16.1"
   }
 }
