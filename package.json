@@ -79,7 +79,7 @@
     "react": "*",
     "react-native": "*",
     "react-native-reanimated": ">=3.5.4",
-    "react-native-vision-camera": ">=2.16.1"
+    "react-native-vision-camera": ">=2.16.2"
   },
   "jest": {
     "preset": "react-native",
