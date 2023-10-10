@@ -1,5 +1,8 @@
 # vision-camera-plugin-barcode-scanner
-_A [VisionCamera](https://mrousavy.com/react-native-vision-camera/) plugin that utilizes [Google ML Kit](https://developers.google.com/ml-kit) for parsing._
+_A [VisionCamera v2](https://mrousavy.com/react-native-vision-camera/) plugin that utilizes [Google ML Kit](https://developers.google.com/ml-kit) for parsing._
+
+* This package works at present ONLY against `vision-camera` v2.
+* This package works at present ONLY against `react-native-reanimated` v3.
 
 ## Installation
 
@@ -44,7 +47,7 @@ export enum BarcodeScannerFormats {
 }
 ```
 
-the `useBarcodeScanner()` hooks returns an state array with the `barcodeData` and the `frameProcesssor` which you pass to the  `<Camera/>` component.
+the `useBarcodeScanner()` hooks returns a state array with the `barcodeData` and the `frameProcesssor` which you pass to the  `<Camera/>` component.
 
 Ex.
 ```js
