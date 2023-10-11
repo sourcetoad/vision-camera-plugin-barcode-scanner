@@ -4,7 +4,7 @@ import { Camera, useCameraDevices } from 'react-native-vision-camera';
 import {
   useBarcodeScanner,
   BarcodeScannerFormats,
-} from 'vision-camera-plugin-barcode-scanner';
+} from '@sourcetoad/vision-camera-plugin-barcode-scanner';
 
 export default function App() {
   // state
