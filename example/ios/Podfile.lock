@@ -572,10 +572,10 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - SocketRocket (0.6.1)
-  - vision-camera-plugin-barcode-scanner (1.0.1):
+  - vision-camera-plugin-barcode-scanner (2.0.0):
     - GoogleMLKit/BarcodeScanning
     - React-Core
-  - VisionCamera (2.16.2):
+  - VisionCamera (2.16.3):
     - React
     - React-callinvoker
     - React-Core
@@ -834,8 +834,8 @@ SPEC CHECKSUMS:
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
   RNReanimated: ab2e96c6d5591c3dfbb38a464f54c8d17fb34a87
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  vision-camera-plugin-barcode-scanner: 9b3d2f0d26b6970a13e0b90d27064a9e64efac6f
-  VisionCamera: 95f969b8950b411285579d633a1014782fe0e634
+  vision-camera-plugin-barcode-scanner: 1cb8a29741e5c7f61d302ba6c2387cdadd6ea588
+  VisionCamera: 2b012ff8066e0bb1c611468af614e8031ee11eb8
   Yoga: 86fed2e4d425ee4c6eab3813ba1791101ee153c6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
