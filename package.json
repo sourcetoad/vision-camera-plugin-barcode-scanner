@@ -63,7 +63,7 @@
     "react-native": "0.72.5",
     "react-native-builder-bob": "^0.20.1",
     "react-native-reanimated": "^3.5.4",
-    "react-native-vision-camera": "^2.16.3",
+    "react-native-vision-camera": "^2.16.4",
     "typescript": "^4.8.4"
   },
   "resolutions": {
@@ -71,7 +71,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-vision-camera": ">=2.16.4"
   },
   "jest": {
     "preset": "react-native",
@@ -123,9 +124,5 @@
         }
       ]
     ]
-  },
-  "dependencies": {
-    "react-native-reanimated": "^3.5.4",
-    "react-native-vision-camera": "^2.16.3"
   }
 }
