@@ -16,7 +16,7 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
         }
     return barcodeOptions
   }
-    
+
   private static func getScannerResults(image: VisionImage, barcodeScanner: BarcodeScanner) -> Barcode? {
     do {
         let barcodes = try barcodeScanner.results(in: image)
@@ -24,20 +24,20 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
             return nil
         }
         // we only want to return the first instance
-        // since we dont care about scanning mulitple barcodes at the same time
+        // since we dont care about scanning multiple barcodes at the same time
         return barcodes[0]
     } catch {
         return nil
     }
   }
-    
+
   private static func mapCGPoints(cornerPoints: [CGPoint]?) -> [[String: Double]] {
     guard let cornerPoints = cornerPoints else {
         return []
     }
     return cornerPoints.map {return ["x": $0.x, "y": $0.y]}
   }
-    
+
   private static func mapBarcodeData(barcodeResults: Barcode) -> Any? {
     let barcodeData: [String: Any?] = [
         "rawValue": barcodeResults.rawValue,
@@ -46,7 +46,7 @@ class VisionCameraPluginBarcodeScanner: NSObject, FrameProcessorPluginBase {
     ]
     return barcodeData
   }
-    
+
   @objc
   public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
     let image = VisionImage(buffer: frame.buffer)
