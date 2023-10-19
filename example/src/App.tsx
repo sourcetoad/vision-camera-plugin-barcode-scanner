@@ -55,7 +55,6 @@ export default function App() {
         isActive={true}
         style={StyleSheet.absoluteFill}
         frameProcessor={frameProcessor}
-        frameProcessorFps={1}
       />
     );
   }
