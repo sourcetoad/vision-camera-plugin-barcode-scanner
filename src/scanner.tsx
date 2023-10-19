@@ -1,19 +1,8 @@
-import { useState, useCallback, DependencyList } from 'react';
+import { useState } from 'react';
 import { runOnJS } from 'react-native-reanimated';
 import type { Frame } from 'react-native-vision-camera';
 import type { BarcodeScannerFormats, BarcodeData, FrameProcessor } from './';
-
-function useFrameProcessor(
-  frameProcessor: FrameProcessor,
-  dependencies: DependencyList
-): FrameProcessor {
-  return useCallback((frame: Frame) => {
-    'worklet';
-
-    frameProcessor(frame);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dependencies);
-}
+import { useFrameProcessor } from 'react-native-vision-camera';
 
 const useBarcodeScanner = (
   format: BarcodeScannerFormats
@@ -28,7 +17,7 @@ const useBarcodeScanner = (
     }
 
     // @ts-ignore
-    const data = __scanQRCodes(frame, format || 1);
+    const data = __read_codes_via_ml_kit(frame, format || 1);
 
     /**
      * https://mrousavy.com/react-native-vision-camera/docs/guides/frame-processors-plugins-overview#types
