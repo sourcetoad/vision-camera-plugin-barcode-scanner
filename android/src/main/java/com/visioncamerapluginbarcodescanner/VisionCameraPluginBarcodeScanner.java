@@ -94,6 +94,6 @@ public class VisionCameraPluginBarcodeScanner extends FrameProcessorPlugin {
   }
 
   public VisionCameraPluginBarcodeScanner() {
-    super("scanQRCodes");
+    super("read_codes_via_ml_kit");
   }
 }

@@ -25,7 +25,7 @@ plugins: [
     [
       'react-native-reanimated/plugin',
       {
-        globals: ['__scanQRCodes'],
+        globals: ['__read_codes_via_ml_kit'],
       },
     ],
 ]

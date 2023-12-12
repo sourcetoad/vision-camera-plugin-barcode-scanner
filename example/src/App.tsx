@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
-import {
-  useBarcodeScanner,
-  BarcodeScannerFormats,
-} from '@sourcetoad/vision-camera-plugin-barcode-scanner';
+import { useBarcodeScanner, BarcodeScannerFormats } from '../../src/index';
 
 export default function App() {
   // state
