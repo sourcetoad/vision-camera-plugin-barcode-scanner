@@ -48,7 +48,7 @@
   },
   "homepage": "https://github.com/sourcetoad/vision-camera-plugin-barcode-scanner#readme",
   "devDependencies": {
-    "@react-native-community/eslint-config": "^3.0.2",
+    "@react-native/eslint-config": "^0.72.2",
     "@react-native/babel-preset": "^0.73.18",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
@@ -84,7 +84,7 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@react-native-community",
+      "@react-native",
       "prettier"
     ],
     "rules": {
