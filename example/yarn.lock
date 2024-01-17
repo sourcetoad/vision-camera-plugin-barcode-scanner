@@ -5188,10 +5188,10 @@ react-native-reanimated@^3.6.1:
     convert-source-map "^2.0.0"
     invariant "^2.2.4"
 
-react-native-vision-camera@^2.16.6:
-  version "2.16.6"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.16.6.tgz#6e6cdd267f92c1663696c0fb6c1e172d6c6a141d"
-  integrity sha512-rhlRC+yLB1fIB5eVjtnbjgTqNzihFqvoc4B0n+PlytYvHeK3BpD3Shawmy8Me/nBVL5k4Ay+QOd4niFOir+6YQ==
+react-native-vision-camera@^2.16.7:
+  version "2.16.7"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.16.7.tgz#e2d8abaa8275be1beb64dbdd39e37cf1e78b0ba4"
+  integrity sha512-1KWgxnBzYThgZaDpL7av+ryN4YHLyt1Eycd+tWrRkBzLGVoUk4Sg/aaPGguTYUTtYO22RMliH8kbda6FPfsgkQ==
 
 react-native@0.73.1:
   version "0.73.1"
