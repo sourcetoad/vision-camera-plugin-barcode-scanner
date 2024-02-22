@@ -4353,9 +4353,9 @@ invariant@^2.2.4:
     loose-envify "^1.0.0"
 
 ip@^1.1.5:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.8.tgz#ae05948f6b075435ed3307acce04629da8cdbf48"
-  integrity sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg==
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.9.tgz#8dfbcc99a754d07f425310b86a99546b1151e396"
+  integrity sha512-cyRxvOEpNHNtchU3Ln9KC/auJgup87llfQpQ+t5ghoC/UhL16SWzbueiCsdTnWmqAWl7LadfuwhlqmtOaqMHdQ==
 
 is-absolute@^1.0.0:
   version "1.0.0"
@@ -6232,10 +6232,10 @@ react-native-reanimated@^3.6.1:
     convert-source-map "^2.0.0"
     invariant "^2.2.4"
 
-react-native-vision-camera@^2.16.6:
-  version "2.16.6"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.16.6.tgz#6e6cdd267f92c1663696c0fb6c1e172d6c6a141d"
-  integrity sha512-rhlRC+yLB1fIB5eVjtnbjgTqNzihFqvoc4B0n+PlytYvHeK3BpD3Shawmy8Me/nBVL5k4Ay+QOd4niFOir+6YQ==
+react-native-vision-camera@^2.16.7:
+  version "2.16.8"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.16.8.tgz#4873b0cb62ad04ca442a08b9e34f5883b35a6418"
+  integrity sha512-DCYkhxHw0p8dftfYxkfyeECraPOCliNWriVUTe+qit16ejs9fXoW1zXJBq48UbysUTuIOk8QwTn9OSy4jhGvTg==
 
 react-native@0.73.0:
   version "0.73.0"
